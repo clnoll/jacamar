@@ -1,0 +1,396 @@
+Tinamous: Tinamidae
+1	Little Tinamou	Crypturellus soui
+Guans, Chachalacas, and Curassows: Cracidae		
+2	Crested Guan	Penelope purpurascens
+3	Sickle-winged Guan	Chamaepetes goudotii
+New World Quail: Odontophoridae		
+4	Crested Bobwhite	Colinus cristatus
+5	Black-fronted Wood-Quail	Odontophorus atrifrons
+Pigeons and Doves: Columbidae		
+6	Pale-vented Pigeon	Patagioenas cayennensis
+7	Scaled Pigeon	Patagioenas speciosa
+8	Bare-eyed Pigeon	Patagioenas corensis
+9	Band-tailed Pigeon	Patagioenas fasciata
+10	Ruddy Pigeon	Patagioenas subvinacea
+11	Plain-breasted Ground-Dove	Columbina minuta
+12	Ruddy Ground-Dove	Columbina talpacoti
+13	Blue Ground-Dove	Claravis pretiosa
+14	Maroon-chested Ground-Dove	Claravis mondetoura
+15	Ruddy Quail-Dove	Geotrygon montana
+16	White-tipped Dove	Leptotila verreauxi
+17	Lined Quail-Dove	Zentrygon linearis
+Cuckoos: Cuculidae		
+18	Smooth-billed Ani	Crotophaga ani
+19	Groove-billed Ani	Crotophaga sulcirostris
+20	Striped Cuckoo	Tapera naevia
+21	Squirrel Cuckoo	Piaya cayana
+Nightjars and Allies: Caprimulgidae		
+22	Nacunda Nighthawk	Chordeiles nacunda
+23	Lesser Nighthawk	Chordeiles acutipennis
+24	|Common Nighthawk|	Chordeiles minor
+25	Common Pauraque	Nyctidromus albicollis
+Oilbird: Steatornithidae		
+26	Oilbird	Steatornis caripensis
+Swifts: Apodidae		
+27	White-collared Swift	Streptoprocne zonaris
+28	Lesser Swallow-tailed Swift	Panyptila cayennensis
+Hummingbirds: Trochilidae		
+29	White-necked Jacobin	Florisuga mellivora
+30	Bronzy Hermit	Glaucis aeneus
+31	Rufous-breasted Hermit	Glaucis hirsutus
+32	Tawny-bellied Hermit	Phaethornis syrmatophorus
+33	Long-billed Hermit	Phaethornis longirostris
+34	Pale-bellied Hermit	Phaethornis anthophilus
+35	Little Hermit (Stripe-throated Hermit)	Phaethornis striigularis
+36	Gray-chinned Hermit	Phaethornis griseogularis
+37	Sooty-capped Hermit	Phaethornis augusti
+38	<Brown Violetear>	Colibri delphinae
+39	Lesser Violetear	Colibri cyanotus
+40	Sparkling Violetear	Colibri coruscans
+41	Ruby-topaz Hummingbird	Chrysolampis mosquitus
+42	Black-throated Mango	Anthracothorax nigricollis
+43	Speckled Hummingbird	Adelomyia melanogenys
+44	Santa Marta Blossomcrown	Anthocephala floriceps
+45	Black-backed Thornbill	Ramphomicron dorsale
+46	Tyrian Metaltail	Metallura tyrianthina
+47	White-tailed Starfrontlet	Coeligena phalerata
+48	Golden-bellied Starfrontlet	Coeligena bonapartei
+49	Mountain Velvetbreast	Lafresnaya lafresnayi
+50	Long-billed Starthroat	Heliomaster longirostris
+51	Santa Marta Woodstar	Chaetocercus astreans
+52	Red-billed Emerald	Chlorostilbon gibsoni
+53	Coppery Emerald	Chlorostilbon russatus
+54	Lazuline Sabrewing	Campylopterus falcatus
+55	Santa Marta Sabrewing	Campylopterus phainopeplus
+56	White-vented Plumeleteer	Chalybura buffonii
+57	Crowned Woodnymph	Thalurania fannyi
+58	Steely-vented Hummingbird	Amazilia saucerottei
+59	Rufous-tailed Hummingbird	Amazilia tzacatl
+60	Sapphire-throated Hummingbird	Lepidopyga coeruleogularis
+61	Shining-green Hummingbird	Lepidopyga goudoti
+62	White-chinned Sapphire	Hylocharis cyanus
+New World Vultures: Cathartidae		
+63	Black Vulture	Coragyps atratus
+64	Turkey Vulture	Cathartes aura
+65	Andean Condor	Vultur gryphus
+Hawks, Eagles, and Kites: Accipitridae		
+66	Pearl Kite	Gampsonyx swainsonii
+67	Black-and-chestnut Eagle	Spizaetus isidori
+68	Plumbeous Kite	Ictinia plumbea
+69	Semicollared Hawk	Accipiter collaris
+70	Sharp-shinned Hawk	Accipiter striatus
+71	Common Black Hawk	Buteogallus anthracinus
+72	Solitary Eagle	Buteogallus solitarius
+73	Roadside Hawk	Rupornis magnirostris
+74	White-rumped Hawk	Parabuteo leucorrhous
+75	Gray-lined Hawk	Buteo nitidus
+76	/Broad-winged Hawk/	Buteo platypterus
+Owls: Strigidae		
+77	Santa Marta Screech-Owl	Megascops gilesi
+78	Great Horned Owl	Bubo virginianus
+79	Ferruginous Pygmy-Owl	Glaucidium brasilianum
+80	Mottled Owl	Ciccaba virgata
+81	Black-and-white Owl	Ciccaba nigrolineata
+Trogons: Trogonidae		
+82	White-tipped Quetzal	Pharomachrus fulgidus
+83	Guianan Trogon	Trogon violaceus
+84	Masked Trogon	Trogon personatus
+Motmots: Momotidae		
+85	Whooping Motmot	Momotus subrufescens
+Kingfishers: Alcedinidae		
+86	Amazon Kingfisher	Chloroceryle amazona
+Puffbirds: Bucconidae		
+87	Russet-throated Puffbird	Hypnelus ruficollis
+Jacamars: Galbulidae		
+88	Rufous-tailed Jacamar	Galbula ruficauda
+Toucans: Ramphastidae		
+89	Southern Emerald-Toucanet	Aulacorhynchus albivitta
+90	Groove-billed Toucanet	Aulacorhynchus sulcatus
+91	Collared Aracari	Pteroglossus torquatus
+92	Keel-billed Toucan	Ramphastos sulfuratus
+Woodpeckers: Picidae		
+93	Scaled Piculet	Picumnus squamulatus
+94	Chestnut Piculet	Picumnus cinnamomeus
+95	Red-crowned Woodpecker	Melanerpes rubricapillus
+96	Smoky-brown Woodpecker	Dryobates fumigatus
+97	Red-rumped Woodpecker	Dryobates kirkii
+98	Powerful Woodpecker	Campephilus pollens
+99	Crimson-crested Woodpecker	Campephilus melanoleucos
+100	Lineated Woodpecker	Dryocopus lineatus
+101	Golden-green Woodpecker	Piculus chrysochloros
+102	Golden-olive Woodpecker	Colaptes rubiginosus
+Falcons and Caracaras: Falconidae		
+103	Barred Forest-Falcon	Micrastur ruficollis
+104	Crested Caracara	Caracara cheriway
+105	Yellow-headed Caracara	Milvago chimachima
+106	Laughing Falcon	Herpetotheres cachinnans
+107	American Kestrel	Falco sparverius
+108	Bat Falcon	Falco rufigularis
+Parrots: Psittacidae		
+109	Barred Parakeet	Bolborhynchus lineola
+110	Orange-chinned Parakeet	Brotogeris jugularis
+111	Red-billed Parrot	Pionus sordidus
+112	Blue-headed Parrot	Pionus menstruus
+113	Scaly-naped Parrot	Amazona mercenarius
+114	Blue-winged Parrotlet	Forpus xanthopterygius
+115	Spectacled Parrotlet	Forpus conspicillatus
+116	Santa Marta Parakeet	Pyrrhura viridicata
+117	Brown-throated Parakeet	Eupsittula pertinax
+118	Military Macaw	Ara militaris
+119	Scarlet-fronted Parakeet	Psittacara wagleri
+Typical Antbirds: Thamnophilidae		
+120	Black-crested Antshrike	Sakesphorus canadensis
+121	Barred Antshrike	Thamnophilus doliatus
+122	Guianan Slaty-Antshrike (Northern Slaty-Antshrike)	Thamnophilus punctatus
+123	Black-backed Antshrike	Thamnophilus melanonotus
+124	White-fringed Antwren	Formicivora grisea
+125	Klages's Antbird	Drymophila klagesi
+Antpittas: Grallariidae		
+126	Santa Marta Antpitta	Grallaria bangsi
+127	Rufous Antpitta	Grallaria rufula
+128	Rusty-breasted Antpitta	Grallaricula ferrugineipectus
+Tapaculos: Rhinocryptidae		
+129	Blackish Tapaculo	Scytalopus latrans
+130	Santa Marta Tapaculo	Scytalopus sanctaemartae
+131	Brown-rumped Tapaculo	Scytalopus latebricola
+Ovenbirds and Woodcreepers: Furnariidae		
+132	Gray-throated Leaftosser	Sclerurus albigularis
+133	Olivaceous Woodcreeper	Sittasomus griseicapillus
+134	Ruddy Woodcreeper	Dendrocincla homochroa
+135	Plain-brown Woodcreeper	Dendrocincla fuliginosa
+136	Wedge-billed Woodcreeper	Glyphorynchus spirurus
+137	Northern Barred-Woodcreeper	Dendrocolaptes sanctithomae
+138	Black-banded Woodcreeper	Dendrocolaptes picumnus
+139	Strong-billed Woodcreeper	Xiphocolaptes promeropirhynchus
+140	Ocellated Woodcreeper	Xiphorhynchus ocellatus
+141	Cocoa Woodcreeper	Xiphorhynchus susurrans
+142	Straight-billed Woodcreeper	Dendroplex picus
+143	Streak-headed Woodcreeper	Lepidocolaptes souleyetii
+144	Montane Woodcreeper	Lepidocolaptes lacrymiger
+145	Plain Xenops	Xenops minutus
+146	Streaked Xenops	Xenops rutilans
+147	Montane Foliage-gleaner	Anabacerthia striaticollis
+148	Ruddy Foliage-gleaner	Clibanornis rubiginosus
+149	Flammulated Treehunter	Thripadectes flammulatus
+150	Spotted Barbtail	Premnoplex brunnescens
+151	Streak-capped Spinetail	Cranioleuca hellmayri
+152	Pale-breasted Spinetail	Synallaxis albescens
+153	Rufous Spinetail	Synallaxis unirufa
+154	Rusty-headed Spinetail	Synallaxis fuscorufa
+Tyrant Flycatchers: Tyrannidae		
+155	White-throated Tyrannulet	Mecocerculus leucophrys
+156	Mouse-colored Tyrannulet	Phaeomyias murina
+157	Yellow Tyrannulet	Capsiempis flaveola
+158	Forest Elaenia	Myiopagis gaimardii
+159	Yellow-bellied Elaenia	Elaenia flavogaster
+160	Lesser Elaenia	Elaenia chiriquensis
+161	Mountain Elaenia	Elaenia frantzii
+162	Sierran Elaenia	Elaenia pallatangae
+163	Streak-necked Flycatcher	Mionectes striaticollis
+164	Olive-striped Flycatcher	Mionectes olivaceus
+165	Ochre-bellied Flycatcher	Mionectes oleagineus
+166	Sepia-capped Flycatcher	Leptopogon amaurocephalus
+167	Slaty-capped Flycatcher	Leptopogon superciliaris
+168	Sooty-headed Tyrannulet	Phyllomyias griseiceps
+169	Black-capped Tyrannulet	Phyllomyias nigrocapillus
+170	Spectacled Tyrannulet	Zimmerius improbus
+171	Golden-faced Tyrannulet	Zimmerius chrysops
+172	Northern Scrub-Flycatcher	Sublegatus arenarum
+173	Slender-billed Tyrannulet	Inezia tenuirostris
+174	Tawny-crowned Pygmy-Tyrant	Euscarthmus meloryphus
+175	Pale-eyed Pygmy-Tyrant	Atalotriccus pilaris
+176	Black-throated Tody-Tyrant	Hemitriccus granadensis
+177	Slate-headed Tody-Tyrant (Slate-headed Tody-Flycatcher)	Poecilotriccus sylvia
+178	Common Tody-Flycatcher	Todirostrum cinereum
+179	Yellow-olive Flycatcher	Tolmomyias sulphurescens
+180	Yellow-breasted Flycatcher	Tolmomyias flaviventris
+181	White-throated Spadebill	Platyrinchus mystaceus
+182	Northern Royal-Flycatcher	Onychorhynchus mexicanus
+183	Cinnamon Flycatcher	Pyrrhomyias cinnamomeus
+184	Bran-colored Flycatcher	Myiophobus fasciatus
+185	Euler's Flycatcher	Lathrotriccus euleri
+186	Black-billed Flycatcher	Aphanotriccus audax
+187	/Olive-sided Flycatcher/	Contopus cooperi
+188	Smoke-colored Pewee	Contopus fumigatus
+189	/Western Wood-Pewee/	Contopus sordidulus
+190	Eastern Wood-Pewee	Contopus virens
+191	Tropical Pewee	Contopus cinereus
+192	Fuscous Flycatcher	Cnemotriccus fuscatus
+193	/Willow Flycatcher/	Empidonax traillii
+194	Black Phoebe	Sayornis nigricans
+195	Streak-throated Bush-Tyrant	Myiotheretes striaticollis
+196	Santa Marta Bush-Tyrant	Myiotheretes pernix
+197	Yellow-bellied Chat-Tyrant	Ochthoeca diadema
+198	Cattle Tyrant	Machetornis rixosa
+199	Bright-rumped Attila	Attila spadiceus
+200	Dusky-capped Flycatcher	Myiarchus tuberculifer
+201	Venezuelan Flycatcher	Myiarchus venezuelensis
+202	Pale-edged Flycatcher	Myiarchus cephalotes
+203	/Great Crested Flycatcher/	Myiarchus crinitus
+204	Brown-crested Flycatcher	Myiarchus tyrannulus
+205	Lesser Kiskadee	Pitangus lictor
+206	Great Kiskadee	Pitangus sulphuratus
+207	Boat-billed Flycatcher	Megarynchus pitangua
+208	Rusty-margined Flycatcher	Myiozetetes cayanensis
+209	Social Flycatcher	Myiozetetes similis
+210	Golden-crowned Flycatcher	Myiodynastes chrysocephalus
+211	Streaked Flycatcher	Myiodynastes maculatus
+212	Piratic Flycatcher	Legatus leucophaius
+213	Tropical Kingbird	Tyrannus melancholicus
+214	Fork-tailed Flycatcher	Tyrannus savana
+Cotingas: Cotingidae		
+215	Golden-breasted Fruiteater	Pipreola aureopectus
+Manakins: Pipridae		
+216	Lance-tailed Manakin	Chiroxiphia lanceolata
+217	White-bearded Manakin	Manacus manacus
+218	Golden-headed Manakin	Ceratopipra erythrocephala
+Tityras and Allies: Tityridae		
+219	Black-crowned Tityra	Tityra inquisitor
+220	Masked Tityra	Tityra semifasciata
+221	Russet-winged Schiffornis	Schiffornis stenorhyncha
+222	Barred Becard	Pachyramphus versicolor
+223	Cinereous Becard	Pachyramphus rufus
+224	Cinnamon Becard	Pachyramphus cinnamomeus
+225	Black-and-white Becard	Pachyramphus albogriseus
+Vireos, Shrike-Babblers, and Erpornis: Vireonidae		
+226	Rufous-browed Peppershrike	Cyclarhis gujanensis
+227	Scrub Greenlet	Hylophilus flavipes
+228	Golden-fronted Greenlet	Pachysilvia aurantiifrons
+229	Brown-capped Vireo	Vireo leucophrys
+230	Chivi Vireo	Vireo chiri
+231	Yellow-green Vireo	Vireo flavoviridis
+Crows, Jays, and Magpies: Corvidae		
+232	Black-chested Jay	Cyanocorax affinis
+Swallows: Hirundinidae		
+233	Blue-and-white Swallow	Pygochelidon cyanoleuca
+234	Southern Rough-winged Swallow	Stelgidopteryx ruficollis
+235	Brown-chested Martin	Progne tapera
+236	White-winged Swallow	Tachycineta albiventer
+237	/Barn Swallow/	Hirundo rustica
+Wrens: Troglodytidae		
+238	Scaly-breasted Wren	Microcerculus marginatus
+239	House Wren	Troglodytes aedon
+240	Mountain Wren	Troglodytes solstitialis
+241	Bicolored Wren	Campylorhynchus griseus
+242	Rufous-breasted Wren	Pheugopedius rutilus
+243	Rufous-and-white Wren	Thryophilus rufalbus
+244	Bay Wren	Cantorchilus nigricapillus
+245	Buff-breasted Wren	Cantorchilus leucotis
+246	Gray-breasted Wood-Wren	Henicorhina leucophrys
+Gnatcatchers: Polioptilidae		
+247	Long-billed Gnatwren	Ramphocaenus melanurus
+248	Tropical Gnatcatcher	Polioptila plumbea
+Thrushes and Allies: Turdidae		
+249	Orange-billed Nightingale-Thrush	Catharus aurantiirostris
+250	Slaty-backed Nightingale-Thrush	Catharus fuscater
+251	|Veery|	Catharus fuscescens
+252	|Gray-cheeked Thrush|	Catharus minimus
+253	/Swainson's Thrush/	Catharus ustulatus
+254	Pale-breasted Thrush	Turdus leucomelas
+255	Yellow-legged Thrush	Turdus flavipes
+256	Pale-vented Thrush	Turdus obsoletus
+257	White-necked Thrush	Turdus albicollis
+258	Black-billed Thrush	Turdus ignobilis
+259	Black-hooded Thrush	Turdus olivater
+260	Great Thrush	Turdus fuscater
+261	Glossy-black Thrush	Turdus serranus
+Finches, Euphonias, and Allies: Fringillidae		
+262	Blue-naped Chlorophonia	Chlorophonia cyanea
+263	Trinidad Euphonia	Euphonia trinitatis
+264	Thick-billed Euphonia	Euphonia laniirostris
+265	Lesser Goldfinch	Spinus psaltria
+266	Andean Siskin	Spinus spinescens
+267	<Yellow-bellied Siskin>	Spinus xanthogastrus
+Thrush-Tanager: Rhodinocichlidae		
+268	Rosy Thrush-Tanager	Rhodinocichla rosea
+New World Sparrows: Passerellidae		
+269	Black-striped Sparrow	Arremonops conirostris
+270	Gray-browed Brushfinch	Arremon assimilis
+271	Golden-winged Sparrow	Arremon schlegeli
+272	Rufous-collared Sparrow	Zonotrichia capensis
+273	Santa Marta Brushfinch	Atlapetes melanocephalus
+Troupials and Allies: Icteridae		
+274	Yellow-billed Cacique	Amblycercus holosericeus
+275	Crested Oropendola	Psarocolius decumanus
+276	/Orchard Oriole/	Icterus spurius
+277	Yellow-backed Oriole	Icterus chrysater
+278	Orange-crowned Oriole	Icterus auricapillus
+279	Yellow Oriole	Icterus nigrogularis
+280	/Baltimore Oriole/	Icterus galbula
+281	Shiny Cowbird	Molothrus bonariensis
+282	Giant Cowbird	Molothrus oryzivorus
+283	Great-tailed Grackle	Quiscalus mexicanus
+New World Warblers: Parulidae		
+284	/Louisiana Waterthrush/	Parkesia motacilla
+285	Northern Waterthrush	Parkesia noveboracensis
+286	/Golden-winged Warbler/	Vermivora chrysoptera
+287	/Black-and-white Warbler/	Mniotilta varia
+288	/Prothonotary Warbler/	Protonotaria citrea
+289	/Tennessee Warbler/	Oreothlypis peregrina
+290	/Connecticut Warbler/	Oporornis agilis
+291	/Mourning Warbler/	Geothlypis philadelphia
+292	/Kentucky Warbler/	Geothlypis formosa
+293	/American Redstart/	Setophaga ruticilla
+294	Tropical Parula	Setophaga pitiayumi
+295	/Bay-breasted Warbler/	Setophaga castanea
+296	/Blackburnian Warbler/	Setophaga fusca
+297	Yellow Warbler	Setophaga petechia
+298	/Blackpoll Warbler/	Setophaga striata
+299	Black-throated Green Warbler	Setophaga virens
+300	Rufous-capped Warbler	Basileuterus rufifrons
+301	Golden-crowned Warbler	Basileuterus culicivorus
+302	Santa Marta Warbler	Myiothlypis basilica
+303	Gray-throated Warbler	Myiothlypis cinereicollis
+304	White-lored Warbler	Myiothlypis conspicillata
+305	/Canada Warbler/	Cardellina canadensis
+306	Slate-throated Redstart	Myioborus miniatus
+307	Yellow-crowned Redstart	Myioborus flavivertex
+308	Golden-fronted Redstart	Myioborus ornatus
+Cardinals and Allies: Cardinalidae		
+309	Hepatic Tanager	Piranga flava
+310	/Summer Tanager/	Piranga rubra
+311	/Scarlet Tanager/	Piranga olivacea
+312	Golden Grosbeak	Pheucticus chrysogaster
+313	/Rose-breasted Grosbeak/	Pheucticus ludovicianus
+314	Blue-black Grosbeak	Cyanoloxia cyanoides
+315	Indigo Bunting	Passerina cyanea
+Tanagers and Allies: Thraupidae		
+316	Gray-headed Tanager	Eucometis penicillata
+317	White-shouldered Tanager	Tachyphonus luctuosus
+318	White-lined Tanager	Tachyphonus rufus
+319	Crimson-backed Tanager	Ramphocelus dimidiatus
+320	Black-cheeked Mountain-Tanager	Anisognathus melanogenys
+321	Buff-breasted Mountain-Tanager	Dubusia taeniata
+322	Blue-gray Tanager	Thraupis episcopus
+323	Palm Tanager	Thraupis palmarum
+324	Blue-capped Tanager	Thraupis cyanocephala
+325	Black-headed Tanager	Tangara cyanoptera
+326	Black-capped Tanager	Tangara heinei
+327	Bay-headed Tanager	Tangara gyrola
+328	Swallow Tanager	Tersina viridis
+329	Blue Dacnis	Dacnis cayana
+330	Red-legged Honeycreeper	Cyanerpes cyaneus
+331	Rufous-browed Conebill	Conirostrum rufum
+332	Black Flowerpiercer	Diglossa humeralis
+333	White-sided Flowerpiercer	Diglossa albilatera
+334	Rusty Flowerpiercer	Diglossa sittoides
+335	Bluish Flowerpiercer	Diglossa caerulescens
+336	Plushcap	Catamblyrhynchus diadema
+337	Slaty Finch	Spodiornis rustica
+338	Gray-hooded Bush Tanager	Cnemoscopus rubrirostris
+339	Stripe-tailed Yellow-Finch	Sicalis citrina
+340	Blue-black Grassquit	Volatinia jacarina
+341	Chestnut-bellied Seedeater	Sporophila castaneiventris
+342	Ruddy-breasted Seedeater	Sporophila minuta
+343	Chestnut-bellied Seed-Finch	Sporophila angolensis
+344	Large-billed Seed-Finch	Sporophila crassirostris
+345	Yellow-bellied Seedeater	Sporophila nigricollis
+346	Plain-colored Seedeater	Catamenia inornata
+347	Paramo Seedeater	Catamenia homochroa
+348	Bananaquit	Coereba flaveola
+349	Yellow-faced Grassquit	Tiaris olivaceus
+350	Dull-colored Grassquit	Tiaris obscurus
+351	Black-faced Grassquit	Tiaris bicolor
+352	Buff-throated Saltator	Saltator maximus
+353	Grayish Saltator	Saltator coerulescens
+354	Streaked Saltator	Saltator striatipectus
