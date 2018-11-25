@@ -1,6 +1,7 @@
 drop table if exists family;
 drop table if exists genus;
 drop table if exists species;
+drop table if exists recording;
 
 create table family (
   id integer primary key,
@@ -24,8 +25,16 @@ create table species (
   foreign key (genus_id) references genus (id)
 );
 
+create table recording (
+  id integer primary key,
+  path text not null,
+  species_id integer,
+  type text not null,
+  foreign key (species_id) references species (id)
+);
 
 .mode tabs
 .import tables/family.tsv family
 .import tables/genus.tsv genus
 .import tables/species.tsv species
+.import tables/recording.tsv recording

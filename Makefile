@@ -2,7 +2,7 @@ DB_PATH:=jacamar.sqlite
 
 
 tables:
-	python bin/create_tables.py input/checklist.tsv
+	python bin/create_tables.py input/checklist.tsv recordings
 
 
 db: tables
