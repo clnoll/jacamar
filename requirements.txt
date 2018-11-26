@@ -1,5 +1,7 @@
 Jinja2==2.10
 beautifulsoup4==4.6.3
 clint==0.5.1
+falcon==1.4.1
+gunicorn==19.9.0
 html5lib==1.0.1
 pandas==0.23.4
