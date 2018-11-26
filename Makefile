@@ -5,6 +5,10 @@ tables:
 	python bin/create_tables.py input/checklist.tsv recordings
 
 
+images:
+	python bin/fetch_wikipedia_images.py $(DB_PATH)
+
+
 db: tables
 	sqlite3 --bail $(DB_PATH) < bin/load_tables.sql
 
