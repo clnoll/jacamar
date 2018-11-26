@@ -1,4 +1,5 @@
 import os
+import sqlite3
 
 import falcon
 import jinja2
@@ -12,10 +13,22 @@ def load_template(name):
         return jinja2.Template(fp.read())
 
 
+class Database:
+
+    def __init__(self):
+        self.connection = sqlite3.connect(settings.db_file)
+
+    def get_classification_by_recording(recording_id):
+        raise NotImplementedError
+
+    def get_classification_by_name(name, level):
+        raise NotImplementedError
+
+
 class BaseResource(object):
 
     def __init__(self):
-        self.db = settings.DB
+        self.db = Database()
 
 
 class Recording(BaseResource):
