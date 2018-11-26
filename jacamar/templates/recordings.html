@@ -1,0 +1,11 @@
+<title>
+    {% block title %}Recordings{% endblock %}
+</title>
+<ul>
+    {% for filename, filepath in results.items() %}
+    <li>
+        <!--<a href="file://{{ filepath }}">{{ filename }}</a>-->
+        <a href="file:///Users/catherine/python_projects/jacamar/recordings/z.mp3">{{ filename }}</a>
+    </li>
+    {% endfor %}
+</ul>

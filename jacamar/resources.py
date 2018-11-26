@@ -1,6 +1,15 @@
+import os
+
 import falcon
+import jinja2
 
 from jacamar import settings
+
+
+def load_template(name):
+    path = os.path.join(settings.template_dir, name)
+    with open(os.path.abspath(path), 'r') as fp:
+        return jinja2.Template(fp.read())
 
 
 class BaseResource(object):
@@ -11,14 +20,24 @@ class BaseResource(object):
 
 class Recording(BaseResource):
 
-    def on_get(self, request, response, recording_id):
-        try:
-            recording = self.db.get_recording(recording_id)
-        except Exception as ex:
-            response.context['result'] = 'error'
+    def on_get(self, request, response, recording_id=None):
+        error = None
+
+        if recording_id is None:
+            location = os.path.join(settings.template_dir, 'recordings.html')
+            recordings = os.listdir(settings.recording_dir)
+            results = {el: os.path.join(settings.recording_dir, el) for el in recordings}
         else:
-            response.context['result'] = recording
-            response.status = falcon.HTTP_200
+            location = os.path.join(settings.template_dir, 'recording_detail.html')
+            try:
+                results = self.db.get_recording(recording_id)
+            except Exception as ex:
+                results = 'Error loading recording %s' % recording_id
+
+        response.status = falcon.HTTP_200
+        response.content_type = falcon.MEDIA_HTML
+        response.body = load_template(location).render(error=error,
+                                                       results=results)
 
 
 class Classification(BaseResource):
@@ -42,6 +61,7 @@ class Classification(BaseResource):
             response.context = ('Correct!' if classifications[self.level] == classification_id
                                 else 'Wrong %s!' % self.level)
             response.status = falcon.HTTP_200
+            response.location = '...'
 
 
 class Family(Classification):
