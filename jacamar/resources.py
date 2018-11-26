@@ -31,6 +31,35 @@ class BaseResource(object):
         self.db = Database()
 
 
+class Image(BaseResource):
+
+    def on_get(self, request, response, family_id=None):
+        cursor = self.db.connection.cursor()
+
+        query = f"""
+        select family.name, family.english_name from family where family.id = {family_id}
+        """
+        family_name, family_english_name = cursor.execute(query).fetchone()
+
+        query = f"""
+        select genus.name, species.name, species.english_name, image.url from image
+        inner join species on image.species_id = species.id
+        inner join genus on species.genus_id = genus.id
+        inner join family on genus.family_id = family.id
+        where family.id={family_id}
+        order by genus.name, species.name
+        """
+        images = list(cursor.execute(query).fetchall())
+
+        template_path = os.path.join(settings.template_dir, 'images.html')
+        response.status = falcon.HTTP_200
+        response.content_type = falcon.MEDIA_HTML
+        response.body = (load_template(template_path)
+                         .render(family_name=family_name,
+                                 family_english_name=family_english_name,
+                                 images=images))
+
+
 class Recording(BaseResource):
 
     def on_get(self, request, response, recording_id=None):

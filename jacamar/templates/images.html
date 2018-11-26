@@ -1,0 +1,9 @@
+<title>
+    {% block title %}{{ family_name }}{% endblock %}
+</title>
+<h1>{{ family_english_name }} ({{ family_name }})</h1>
+{% for genus, species, english_name, url in images %}
+<div class="image">
+  <img src={{url}}> {{english_name}} ({{genus}} {{species}})
+</div>
+{% endfor %}
