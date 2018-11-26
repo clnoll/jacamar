@@ -11,3 +11,11 @@ db: tables
 
 db-shell: db
 	rlwrap sqlite3 $(DB_PATH)
+
+
+serve:
+	gunicorn jacamar.app
+
+
+serve-dev:
+	gunicorn jacamar.app --reload --workers=1 -t 500
