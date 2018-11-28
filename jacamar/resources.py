@@ -19,6 +19,15 @@ class Database:
         self.connection = sqlite3.connect(settings.db_file)
         self.connection.row_factory = sqlite3.Row
 
+    def execute(self, query):
+        return self.connection.cursor().execute(query)
+
+    def get_all_families(self):
+        query = """
+        select id, name, english_name from family order by id
+        """
+        return self.connection.cursor().execute(query).fetchall()
+
     def get_classification_by_recording(recording_id):
         raise NotImplementedError
 
@@ -132,3 +141,85 @@ class Genus(Classification):
 class Species(Classification):
     def __init__(self):
         super().__init__(classification_level='species')
+
+
+class RecordingQuiz(BaseResource):
+
+    def on_get(self, request, response):
+        # TODO: species.id is not used
+        recording_query = """
+        select recording.id, species.id as species_id, species.english_name, family.id as family_id from recording
+        join species on recording.species_id = species.id
+        inner join genus on genus.id = species.genus_id
+        inner join family on family.id = genus.family_id
+        where recording.id in (
+          select recording.id from recording
+          where type = 'song'
+          order by random()
+          limit 1
+        )
+        """
+        recording = self.db.connection.cursor().execute(recording_query).fetchone()
+        template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
+        response.body = (load_template(template_path)
+                         .render(recording=recording,
+                                 families=self.db.get_all_families()))
+        response.status = falcon.HTTP_200
+        response.content_type = falcon.MEDIA_HTML
+
+        from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
+        print(red(f"Truth: {dict(recording)}"))
+
+
+    def on_post(self, request, response):
+        form_data = parse_form_data(request)
+
+        from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
+        print(red(f'form data: {form_data}'))
+
+        query = f"""
+        select family.id from recording
+        inner join species on species.id = recording.species_id
+        inner join genus on genus.id = species.genus_id
+        inner join family on family.id = genus.family_id
+        where recording.id = {form_data['recording_id']}
+        """
+        [species_family_id] = self.db.execute(query).fetchone()
+        species_family_id = int(species_family_id)
+
+        from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
+        print(red('recording %s is family %s' % (form_data['recording_id'], species_family_id)))
+
+        if form_data['family_id'] == species_family_id:
+            response.body = 'Success! On to genus and species...'
+        else:
+            template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
+            response.body = (load_template(template_path)
+                             .render(recording={'id': form_data['recording_id']},
+                                     families=self.db.get_all_families()))
+
+        response.status = falcon.HTTP_200
+        response.content_type = falcon.MEDIA_HTML
+
+
+def parse_form_data(request):
+    SEP = '--'
+    raw_data = request.stream.read().decode('utf-8')
+    _, raw_data = raw_data.split('=', 1)
+    raw_data = raw_data.split(SEP)
+    assert len(raw_data) % 2 == 0
+    raw_data = iter(raw_data)
+    data = {}
+    while True:
+        try:
+            key = next(raw_data)
+        except StopIteration:
+            return data
+        else:
+            value = next(raw_data)
+            try:
+                value = int(value)
+            except ValueError:
+                pass
+            assert key not in data
+            data[key] = value

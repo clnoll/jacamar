@@ -1,0 +1,12 @@
+<title>
+    {% block title %}Quiz{% endblock %}
+</title>
+
+<a href="/recordings/{{ recording['id'] }}/">recording</a>
+
+<form action="/recording-quiz/" method="post">
+  {% for f in families %}
+  <input type="radio" name="data" value="family_id--{{ f['id'] }}--recording_id--{{ recording['id'] }}">{{ f['english_name'] }} ({{ f['name'] }})<br>
+  {% endfor %}
+  <input type="submit" value="Submit">
+</form>
