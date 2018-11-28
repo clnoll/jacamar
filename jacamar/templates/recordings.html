@@ -2,10 +2,9 @@
     {% block title %}Recordings{% endblock %}
 </title>
 <ul>
-    {% for filename, filepath in results.items() %}
+    {% for genus, species, recording_id, recording_type in results %}
     <li>
-        <!--<a href="file://{{ filepath }}">{{ filename }}</a>-->
-        <a href="file:///Users/catherine/python_projects/jacamar/recordings/z.mp3">{{ filename }}</a>
+        <a href="/recordings/{{ recording_id }}/">{{ genus }} {{ species }} ({{ recording_type}})</a>
     </li>
     {% endfor %}
 </ul>

@@ -66,12 +66,17 @@ class Recording(BaseResource):
         error = None
 
         if recording_id is None:
-            location = os.path.join(settings.template_dir, 'recordings.html')
-            recordings = os.listdir(settings.recording_dir)
-            results = {el: os.path.join(settings.recording_dir, el) for el in recordings}
+            query = f"""
+            select genus.name, species.name, recording.id, recording.type
+            from species
+            inner join recording on recording.species_id = species.id
+            inner join genus on species.genus_id = genus.id
+            order by genus.name, species.name
+            """
+            results = self.db.connection.cursor().execute(query).fetchall()
+            template_path = os.path.join(settings.template_dir, 'recordings.html')
             response.content_type = falcon.MEDIA_HTML
-            response.body = load_template(location).render(error=error,
-                                                           results=results)
+            response.body = load_template(template_path).render(results=results)
         else:
             query = f"""
             select path from recording where id = {recording_id}
