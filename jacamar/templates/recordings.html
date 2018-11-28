@@ -2,9 +2,9 @@
     {% block title %}Recordings{% endblock %}
 </title>
 <ul>
-    {% for genus, species, recording_id, recording_type in results %}
+    {% for r in results %}
     <li>
-        <a href="/recordings/{{ recording_id }}/">{{ genus }} {{ species }} ({{ recording_type}})</a>
+        <a href="/recordings/{{ r['id'] }}/">{{ r['genus'] }} {{ r['species'] }} ({{ r['type'] }})</a>
     </li>
     {% endfor %}
 </ul>

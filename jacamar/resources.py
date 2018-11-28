@@ -17,6 +17,7 @@ class Database:
 
     def __init__(self):
         self.connection = sqlite3.connect(settings.db_file)
+        self.connection.row_factory = sqlite3.Row
 
     def get_classification_by_recording(recording_id):
         raise NotImplementedError
@@ -67,7 +68,7 @@ class Recording(BaseResource):
 
         if recording_id is None:
             query = f"""
-            select genus.name, species.name, recording.id, recording.type
+            select genus.name as genus, species.name as species, recording.id, recording.type
             from species
             inner join recording on recording.species_id = species.id
             inner join genus on species.genus_id = genus.id
