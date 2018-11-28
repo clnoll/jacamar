@@ -69,17 +69,19 @@ class Recording(BaseResource):
             location = os.path.join(settings.template_dir, 'recordings.html')
             recordings = os.listdir(settings.recording_dir)
             results = {el: os.path.join(settings.recording_dir, el) for el in recordings}
+            response.content_type = falcon.MEDIA_HTML
+            response.body = load_template(location).render(error=error,
+                                                           results=results)
         else:
-            location = os.path.join(settings.template_dir, 'recording_detail.html')
-            try:
-                results = self.db.get_recording(recording_id)
-            except Exception as ex:
-                results = 'Error loading recording %s' % recording_id
+            query = f"""
+            select path from recording where id = {recording_id}
+            """
+            [recording_path] = self.db.connection.cursor().execute(query).fetchone()
+            with open(recording_path, 'rb') as fp:
+                response.body = fp.read()
+            response.content_type = "audio/mpeg"
 
         response.status = falcon.HTTP_200
-        response.content_type = falcon.MEDIA_HTML
-        response.body = load_template(location).render(error=error,
-                                                       results=results)
 
 
 class Classification(BaseResource):
