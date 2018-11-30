@@ -16,6 +16,7 @@ create table family (
   name text not null,
   english_name text not null,
   _order_id integer,
+  weight real not null,
   foreign key (_order_id) references _order (id)
 );
 

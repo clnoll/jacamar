@@ -1,42 +1,42 @@
-1	Tinamidae	Tinamous	1
-2	Cracidae	Guans, Chachalacas, and Curassows	2
-3	Odontophoridae	New World Quail	3
-4	Columbidae	Pigeons and Doves	4
-5	Cuculidae	Cuckoos	5
-6	Caprimulgidae	Nightjars and Allies	6
-7	Steatornithidae	Oilbird	6
-8	Apodidae	Swifts	7
-9	Trochilidae	Hummingbirds	7
-10	Cathartidae	New World Vultures	8
-11	Accipitridae	Hawks, Eagles, and Kites	8
-12	Strigidae	Owls	9
-13	Trogonidae	Trogons	10
-14	Momotidae	Motmots	11
-15	Alcedinidae	Kingfishers	11
-16	Bucconidae	Puffbirds	12
-17	Galbulidae	Jacamars	12
-18	Ramphastidae	Toucans	13
-19	Picidae	Woodpeckers	13
-20	Falconidae	Falcons and Caracaras	14
-21	Psittacidae	Parrots	15
-22	Thamnophilidae	Typical Antbirds	16
-23	Grallariidae	Antpittas	16
-24	Rhinocryptidae	Tapaculos	16
-25	Furnariidae	Ovenbirds and Woodcreepers	16
-26	Tyrannidae	Tyrant Flycatchers	16
-27	Cotingidae	Cotingas	16
-28	Pipridae	Manakins	16
-29	Tityridae	Tityras and Allies	16
-30	Vireonidae	Vireos, Shrike-Babblers, and Erpornis	16
-31	Corvidae	Crows, Jays, and Magpies	16
-32	Hirundinidae	Swallows	16
-33	Troglodytidae	Wrens	16
-34	Polioptilidae	Gnatcatchers	16
-35	Turdidae	Thrushes and Allies	16
-36	Fringillidae	Finches, Euphonias, and Allies	16
-37	Rhodinocichlidae	Thrush-Tanager	16
-38	Passerellidae	New World Sparrows	16
-39	Icteridae	Troupials and Allies	16
-40	Parulidae	New World Warblers	16
-41	Cardinalidae	Cardinals and Allies	16
-42	Thraupidae	Tanagers and Allies	16
+1	Tinamidae	Tinamous	1	800
+2	Cracidae	Guans, Chachalacas, and Curassows	2	1000
+3	Odontophoridae	New World Quail	3	300
+4	Columbidae	Pigeons and Doves	4	400
+5	Cuculidae	Cuckoos	5	115
+6	Caprimulgidae	Nightjars and Allies	6	60
+7	Steatornithidae	Oilbird	6	60
+8	Apodidae	Swifts	7	25
+9	Trochilidae	Hummingbirds	7	5
+10	Cathartidae	New World Vultures	8	1400
+11	Accipitridae	Hawks, Eagles, and Kites	8	800
+12	Strigidae	Owls	9	500
+13	Trogonidae	Trogons	10	85
+14	Momotidae	Motmots	11	77
+15	Alcedinidae	Kingfishers	11	90
+16	Bucconidae	Puffbirds	12	27
+17	Galbulidae	Jacamars	12	28
+18	Ramphastidae	Toucans	13	280
+19	Picidae	Woodpeckers	13	90
+20	Falconidae	Falcons and Caracaras	14	200
+21	Psittacidae	Parrots	15	150
+22	Thamnophilidae	Typical Antbirds	16	25
+23	Grallariidae	Antpittas	16	50
+24	Rhinocryptidae	Tapaculos	16	15
+25	Furnariidae	Ovenbirds and Woodcreepers	16	30
+26	Tyrannidae	Tyrant Flycatchers	16	25
+27	Cotingidae	Cotingas	16	60
+28	Pipridae	Manakins	16	15
+29	Tityridae	Tityras and Allies	16	25
+30	Vireonidae	Vireos, Shrike-Babblers, and Erpornis	16	17
+31	Corvidae	Crows, Jays, and Magpies	16	90
+32	Hirundinidae	Swallows	16	15
+33	Troglodytidae	Wrens	16	10
+34	Polioptilidae	Gnatcatchers	16	7
+35	Turdidae	Thrushes and Allies	16	60
+36	Fringillidae	Finches, Euphonias, and Allies	16	30
+37	Rhodinocichlidae	Thrush-Tanager	16	30
+38	Passerellidae	New World Sparrows	16	25
+39	Icteridae	Troupials and Allies	16	80
+40	Parulidae	New World Warblers	16	11
+41	Cardinalidae	Cardinals and Allies	16	30
+42	Thraupidae	Tanagers and Allies	16	25
