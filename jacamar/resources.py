@@ -145,6 +145,14 @@ class Species(Classification):
 
 class RecordingQuiz(BaseResource):
 
+    def _on_get_recording_quiz(self, recording, response):
+        template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
+        response.body = (load_template(template_path)
+                         .render(recording=recording,
+                                 families=self.db.get_all_families()))
+        response.status = falcon.HTTP_200
+        response.content_type = falcon.MEDIA_HTML
+
     def on_get(self, request, response):
         # TODO: species.id is not used
         recording_query = """
@@ -160,12 +168,7 @@ class RecordingQuiz(BaseResource):
         )
         """
         recording = self.db.connection.cursor().execute(recording_query).fetchone()
-        template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
-        response.body = (load_template(template_path)
-                         .render(recording=recording,
-                                 families=self.db.get_all_families()))
-        response.status = falcon.HTTP_200
-        response.content_type = falcon.MEDIA_HTML
+        self._on_get_recording_quiz(recording, response)
 
         from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
         print(red(f"Truth: {dict(recording)}"))
@@ -192,14 +195,11 @@ class RecordingQuiz(BaseResource):
 
         if form_data['family_id'] == species_family_id:
             response.body = 'Success! On to genus and species...'
+            response.status = falcon.HTTP_200
+            response.content_type = falcon.MEDIA_HTML
         else:
-            template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
-            response.body = (load_template(template_path)
-                             .render(recording={'id': form_data['recording_id']},
-                                     families=self.db.get_all_families()))
-
-        response.status = falcon.HTTP_200
-        response.content_type = falcon.MEDIA_HTML
+            recording = {'id': form_data['recording_id']}
+            self._on_get_recording_quiz(recording, response)
 
 
 def parse_form_data(request):
