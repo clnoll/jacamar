@@ -16,11 +16,15 @@
     <audio controls>
       <source src="/recordings/{{ recording['id'] }}/" type="audio/mpeg">
     </audio>
-    <form action="/recording-quiz/" method="post">
-      <table>
-        <tbody>
-          {% for f in families %}
+
+    <table>
+      <tbody>
+        {% for f in families %}
+          <form action="/recording-quiz/" method="post">
             <tr>
+                <td>
+                  <input type="submit" value=Submit>
+                </td>
               <td>
                 <input type="radio" name="data" value="family_id--{{ f['id'] }}--recording_id--{{ recording['id'] }}">{{ f['english_name'] }} ({{ f['name'] }}) {{ f['weight']}}g<br>
               </td>
@@ -30,10 +34,9 @@
               </td>
             {% endfor %}
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <input type="submit" value="Submit">
-    </form>
+          </form>
+        {% endfor %}
+      </tbody>
+    </table>
   </body>
 </html>
