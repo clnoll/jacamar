@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from collections import defaultdict
 
 import falcon
 import jinja2
@@ -135,19 +136,40 @@ class RecordingQuiz(BaseResource):
 
     def get_families_with_songs(self):
         query = """
-        select distinct family.id, family.name, family.english_name
+        select distinct family.id, family.name, family.english_name, family.weight
         from recording join species on species.id = recording.species_id
         join genus on genus.id = species.genus_id
         join family on family.id = genus.family_id
         where recording.type like '%song%'
+        order by family.weight
         """
-        return self.db.connection.cursor().execute(query).fetchall()
+        families = self.db.connection.cursor().execute(query).fetchall()
+
+        query = """
+        select family.name, image.url
+        from image
+        join species on species.id = image.species_id
+        join genus on genus.id = species.genus_id
+        join family on family.id = genus.family_id
+        """
+        images = self.db.connection.cursor().execute(query).fetchall()
+        family2image_urls = defaultdict(list)
+        for family, url in images:
+            family2image_urls[family].append(url)
+
+        families = list(map(dict, families))
+
+        for family in families:
+            family['image_urls'] = family2image_urls[family['name']]
+
+        return families
 
     def _on_get_recording_quiz(self, recording, response):
         template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
+        families = self.get_families_with_songs()
         response.body = (load_template(template_path)
                          .render(recording=recording,
-                                 families=self.get_families_with_songs()))
+                                 families=families))
         response.status = falcon.HTTP_200
         response.content_type = falcon.MEDIA_HTML
 
