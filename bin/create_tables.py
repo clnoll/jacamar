@@ -133,7 +133,7 @@ def create_recording_table(dir, species_table):
                     {
                         "id": recording_id,
                         "path": os.path.join(dir, recording["file"]),
-                        "type": recording["type"],
+                        "type": recording["type"].lower(),
                         "species_id": species["id"],
                     }
                 )
