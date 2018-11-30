@@ -10,6 +10,70 @@ from pandas import DataFrame
 
 red = partial(colored.red, bold=True)
 
+ORDER_TABLE = [
+    {"id": 1, "name": "Tinamiformes", "english_name": "Tinamous"},
+    {"id": 2, "name": "Craciformes", "english_name": "Guans, Curassows, Chachalacas"},
+    {"id": 3, "name": "Galliformes", "english_name": "Pheasants, Quails, Grouse, etc"},
+    {"id": 4, "name": "Columbiformes", "english_name": "Doves, Pigeons"},
+    {"id": 5, "name": "Cuculiformes", "english_name": "Cuckoos"},
+    {"id": 6, "name": "Caprimulgiformes", "english_name": "Nightjars"},
+    {"id": 7, "name": "Apodiformes", "english_name": "Swifts, Hummingbirds"},
+    {"id": 8, "name": "Accipitriformes", "english_name": "Hawks"},
+    {"id": 9, "name": "Strigiformes", "english_name": "Owls"},
+    {"id": 10, "name": "Trogoniformes", "english_name": "Trogons"},
+    {"id": 11, "name": "Coraciiformes", "english_name": "Motmots, Kingfishers"},
+    {"id": 12, "name": "Galbuliformes", "english_name": "Jacamars"},
+    {"id": 13, "name": "Piciformes", "english_name": "Woodpeckers"},
+    {"id": 14, "name": "Falconiformes", "english_name": "Falcons"},
+    {"id": 15, "name": "Psittaciformes", "english_name": "Parrots"},
+    {"id": 16, "name": "Passeriformes", "english_name": "Passerines"},
+]
+
+FAMILY2ORDER = {
+    "Tinamidae": 1,
+    "Cracidae": 2,
+    "Odontophoridae": 3,
+    "Columbidae": 4,
+    "Cuculidae": 5,
+    "Caprimulgidae": 6,
+    "Steatornithidae": 6,
+    "Apodidae": 7,
+    "Trochilidae": 7,
+    "Cathartidae": 8,
+    "Accipitridae": 8,
+    "Strigidae": 9,
+    "Trogonidae": 10,
+    "Momotidae": 11,
+    "Alcedinidae": 11,
+    "Bucconidae": 12,
+    "Galbulidae": 12,
+    "Ramphastidae": 13,
+    "Picidae": 13,
+    "Falconidae": 14,
+    "Psittacidae": 15,
+    "Thamnophilidae": 16,
+    "Grallariidae": 16,
+    "Rhinocryptidae": 16,
+    "Furnariidae": 16,
+    "Tyrannidae": 16,
+    "Cotingidae": 16,
+    "Pipridae": 16,
+    "Tityridae": 16,
+    "Vireonidae": 16,
+    "Corvidae": 16,
+    "Hirundinidae": 16,
+    "Troglodytidae": 16,
+    "Polioptilidae": 16,
+    "Turdidae": 16,
+    "Fringillidae": 16,
+    "Rhodinocichlidae": 16,
+    "Passerellidae": 16,
+    "Icteridae": 16,
+    "Parulidae": 16,
+    "Cardinalidae": 16,
+    "Thraupidae": 16,
+}
+
 
 def create_tables(fp):
     family_table = {}
@@ -44,9 +108,11 @@ def create_tables(fp):
                 "id": family_id,
                 "name": family,
                 "english_name": family_english,
+                "order_id": FAMILY2ORDER[family],
             }
-    tables = family_table, genus_table, species_table
-    return [sorted(table.values(), key=itemgetter("id")) for table in tables]
+    tables = [family_table, genus_table, species_table]
+    tables = [sorted(table.values(), key=itemgetter("id")) for table in tables]
+    return [ORDER_TABLE] + tables
 
 
 def create_recording_table(dir, species_table):
@@ -134,12 +200,13 @@ def error(msg):
 if __name__ == "__main__":
     [checklist_file, recordings_dir] = sys.argv[1:]
     with open(checklist_file) as fp:
-        family_table, genus_table, species_table = create_tables(fp)
+        order_table, family_table, genus_table, species_table = create_tables(fp)
 
     recording_table = create_recording_table(recordings_dir, species_table)
 
     for table, columns, path in [
-        (family_table, ["id", "name", "english_name"], "tables/family.tsv"),
+        (order_table, ["id", "name", "english_name"], "tables/order.tsv"),
+        (family_table, ["id", "name", "english_name", "order_id"], "tables/family.tsv"),
         (genus_table, ["id", "name", "english_name", "family_id"], "tables/genus.tsv"),
         (species_table, ["id", "name", "english_name", "genus_id"], "tables/species.tsv"),
         (recording_table, ["id", "path", "species_id", "type"], "tables/recording.tsv"),

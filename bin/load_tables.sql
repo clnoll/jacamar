@@ -1,13 +1,22 @@
+drop table if exists _order;
 drop table if exists family;
 drop table if exists genus;
 drop table if exists species;
 drop table if exists recording;
 drop table if exists image;
 
-create table family (
+create table _order (
   id integer primary key,
   name text not null,
   english_name text not null
+);
+
+create table family (
+  id integer primary key,
+  name text not null,
+  english_name text not null,
+  _order_id integer,
+  foreign key (_order_id) references _order (id)
 );
 
 create table genus (
@@ -42,6 +51,7 @@ create table image (
 );
 
 .mode tabs
+.import tables/order.tsv _order
 .import tables/family.tsv family
 .import tables/genus.tsv genus
 .import tables/species.tsv species
