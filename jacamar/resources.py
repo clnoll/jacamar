@@ -22,18 +22,6 @@ class Database:
     def execute(self, query):
         return self.connection.cursor().execute(query)
 
-    def get_all_families(self):
-        query = """
-        select id, name, english_name from family order by id
-        """
-        return self.connection.cursor().execute(query).fetchall()
-
-    def get_classification_by_recording(recording_id):
-        raise NotImplementedError
-
-    def get_classification_by_name(name, level):
-        raise NotImplementedError
-
 
 class BaseResource(object):
 
@@ -145,11 +133,21 @@ class Species(Classification):
 
 class RecordingQuiz(BaseResource):
 
+    def get_families_with_songs(self):
+        query = """
+        select distinct family.id, family.name, family.english_name
+        from recording join species on species.id = recording.species_id
+        join genus on genus.id = species.genus_id
+        join family on family.id = genus.family_id
+        where recording.type like '%song%'
+        """
+        return self.db.connection.cursor().execute(query).fetchall()
+
     def _on_get_recording_quiz(self, recording, response):
         template_path = os.path.join(settings.template_dir, 'recording_quiz.html')
         response.body = (load_template(template_path)
                          .render(recording=recording,
-                                 families=self.db.get_all_families()))
+                                 families=self.get_families_with_songs()))
         response.status = falcon.HTTP_200
         response.content_type = falcon.MEDIA_HTML
 
