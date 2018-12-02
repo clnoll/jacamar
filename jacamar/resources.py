@@ -183,7 +183,7 @@ class RecordingQuiz(BaseResource):
         inner join family on family.id = genus.family_id
         where recording.id in (
           select recording.id from recording
-          where type = 'song'
+          where type like '%song%'
           order by random()
           limit 1
         )
