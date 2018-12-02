@@ -135,7 +135,7 @@ class Species(Classification):
 class RecordingQuiz(BaseResource):
 
     def get_families_with_songs(self):
-        query = """
+        family_query = """
         select distinct family.id, family.name, family.english_name, family.weight
         from recording join species on species.id = recording.species_id
         join genus on genus.id = species.genus_id
@@ -143,16 +143,16 @@ class RecordingQuiz(BaseResource):
         where recording.type like '%song%'
         order by family.weight
         """
-        families = self.db.connection.cursor().execute(query).fetchall()
+        families = self.db.connection.cursor().execute(family_query).fetchall()
 
-        query = """
+        image_query = """
         select family.name, image.url
         from image
         join species on species.id = image.species_id
         join genus on genus.id = species.genus_id
         join family on family.id = genus.family_id
         """
-        images = self.db.connection.cursor().execute(query).fetchall()
+        images = self.db.connection.cursor().execute(image_query).fetchall()
         family2image_urls = defaultdict(list)
         for family, url in images:
             family2image_urls[family].append(url)
