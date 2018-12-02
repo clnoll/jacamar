@@ -10,6 +10,9 @@
       img.bird {
           width: 150px;
       }
+      .hidden {
+          display: none;
+      }
     </style>
   </head>
   <body>
@@ -22,13 +25,11 @@
         {% for f in families %}
           <form action="/recording-quiz/" method="post">
             <tr>
-                <td>
-                  <input type="submit" value=Submit>
-                </td>
               <td>
-                <input type="radio" name="data" value="family_id--{{ f['id'] }}--recording_id--{{ recording['id'] }}">{{ f['english_name'] }} ({{ f['name'] }}) {{ f['weight']}}g<br>
+                <input class="hidden" type="radio" name="data" value="family_id--{{ f['id'] }}--recording_id--{{ recording['id'] }}" checked>
+                <input type="submit" value="{{ f['english_name'] }} ({{ f['name'] }}) {{ f['weight']}}g">
               </td>
-            {% for url in f['image_urls'][:5] %}
+              {% for url in f['image_urls'][:5] %}
               <td>
                 <img src="{{ url }}" class="bird">
               </td>
