@@ -19,23 +19,22 @@
     <audio controls>
       <source src="/recordings/{{ recording['id'] }}/" type="audio/mpeg">
     </audio>
-
     <table>
       <tbody>
         {% for f in families %}
-          <form action="/recording-quiz/" method="post">
-            <tr>
-              <td>
-                <input class="hidden" type="radio" name="data" value="family_id--{{ f['id'] }}--recording_id--{{ recording['id'] }}" checked>
-                <input type="submit" value="{{ f['english_name'] }} ({{ f['name'] }}) {{ f['weight']}}g">
-              </td>
-              {% for url in f['image_urls'][:5] %}
-              <td>
-                <img src="{{ url }}" class="bird">
-              </td>
+        <form action="/recording-quiz/" method="post">
+          <tr>
+            <td>
+              <input class="hidden" type="radio" name="data" value="family_id--{{ f['id'] }}--recording_id--{{ recording['id'] }}" checked>
+              <input type="submit" value="{{ f['english_name'] }} ({{ f['name'] }}) {{ f['weight']}}g">
+            </td>
+            {% for url in f['image_urls'][:5] %}
+            <td>
+              <img src="{{ url }}" class="bird">
+            </td>
             {% endfor %}
-            </tr>
-          </form>
+          </tr>
+        </form>
         {% endfor %}
       </tbody>
     </table>
