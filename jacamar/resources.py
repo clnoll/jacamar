@@ -151,6 +151,7 @@ class RecordingQuiz(BaseResource):
         join species on species.id = image.species_id
         join genus on genus.id = species.genus_id
         join family on family.id = genus.family_id
+        order by random()
         """
         images = self.db.connection.cursor().execute(image_query).fetchall()
         family2image_urls = defaultdict(list)
