@@ -141,6 +141,7 @@ class RecordingQuiz(BaseResource):
         join genus on genus.id = species.genus_id
         join family on family.id = genus.family_id
         where recording.type like '%song%'
+        and not family.name in ('Hirundinidae')
         order by family.weight
         """
         families = self.db.connection.cursor().execute(family_query).fetchall()
@@ -187,6 +188,7 @@ class RecordingQuiz(BaseResource):
           order by random()
           limit 1
         )
+        and not family.name in ('Hirundinidae')
         """
         recording = self.db.connection.cursor().execute(recording_query).fetchone()
         self._on_get_recording_quiz(recording, response)
