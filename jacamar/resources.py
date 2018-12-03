@@ -71,6 +71,8 @@ class Recording(BaseResource):
             else:
                 species['recordings'] = [recording]
             species['image_url'] = el['url']
+            species['english_name'] = el['english_name']
+            species['name'] = '%s %s' % (el['genus'], el['species'])
         return grouped_results
 
     def on_get(self, request, response, recording_id=None):
@@ -78,7 +80,7 @@ class Recording(BaseResource):
 
         if recording_id is None:
             query = f"""
-            select family.name as family, genus.name as genus, species.name as species, recording.id, recording.type, image.url
+            select family.name as family, genus.name as genus, species.name as species, species.english_name as english_name, recording.id, recording.type, image.url
             from species
             inner join image on species.id = image.species_id
             inner join recording on recording.species_id = species.id
