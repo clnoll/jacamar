@@ -1,10 +1,20 @@
 <title>
-    {% block title %}Recordings{% endblock %}
+  {% block title %}Recordings{% endblock %}
 </title>
 <ul>
-    {% for r in results %}
-    <li>
-        <a href="/recordings/{{ r['id'] }}/">{{ r['genus'] }} {{ r['species'] }} ({{ r['type'] }})</a>
-    </li>
+  {% for s, recordings in results.items() %}
+  <li>
+    {{ s[1] }} {{ s[2] }} ({{ s[0] }})
+    <ul>
+      {% for type, id in recordings %}
+      <li>
+        {{ type }}
+        <audio controls>
+          <source src="/recordings/{{ id }}/" type="audio/mpeg">
+        </audio>
+      </li>
     {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
 </ul>
