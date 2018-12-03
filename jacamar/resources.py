@@ -61,21 +61,30 @@ class Image(BaseResource):
 
 class Recording(BaseResource):
 
+    def _group_recording_by_species(self, query_results):
+        grouped_results = defaultdict(list)
+        for el in query_results:
+            grouped_results[(el['family'], el['genus'], el['species'])].append((el['type'],
+                                                                                el['id']))
+        return grouped_results
+
     def on_get(self, request, response, recording_id=None):
         error = None
 
         if recording_id is None:
             query = f"""
-            select genus.name as genus, species.name as species, recording.id, recording.type
+            select family.name as family, genus.name as genus, species.name as species, recording.id, recording.type
             from species
             inner join recording on recording.species_id = species.id
             inner join genus on species.genus_id = genus.id
+            inner join family on genus.family_id = family.id
             order by genus.name, species.name
             """
-            results = self.db.connection.cursor().execute(query).fetchall()
+            query_results = self.db.connection.cursor().execute(query).fetchall()
             template_path = os.path.join(settings.template_dir, 'recordings.html')
             response.content_type = falcon.MEDIA_HTML
-            response.body = load_template(template_path).render(results=results)
+            response.body = load_template(template_path).render(
+                results=self._group_recording_by_species(query_results))
         else:
             query = f"""
             select path from recording where id = {recording_id}
