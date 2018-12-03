@@ -1,20 +1,52 @@
-<title>
-  {% block title %}Recordings{% endblock %}
-</title>
-<ul>
-  {% for s, recordings in results.items() %}
-  <li>
-    {{ s[1] }} {{ s[2] }} ({{ s[0] }})
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Species</title>
+    <style>
+    </style>
+  </head>
+  <body>
     <ul>
-      {% for type, id in recordings %}
+      {% for f, genus2species in results.items() %}
       <li>
-        {{ type }}
-        <audio controls>
-          <source src="/recordings/{{ id }}/" type="audio/mpeg">
-        </audio>
+        {{ f }}
+        <ul>
+          {% for g, species in genus2species.items() %}
+          <li>
+            {{ g }}
+            <ul>
+              {% for _, s in species.items() %}
+              <li>
+                {{ s['english_name'] }} ({{ s['name'] }})
+                <table>
+                  <tbody>
+                    {% for type, id in s['recordings'] %}
+                    <tr>
+                      <td>
+                        {{ type }}
+                      </td>
+                      <td>
+                        <audio controls>
+                          <source src="/recordings/{{ id }}/" type="audio/mpeg">
+                        </audio>
+                      </td>
+                      {% if loop.first %}
+                      <td rowspan="0">
+                        <img src="{{ s['image_url'] }}" class="bird">
+                      </td>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        </ul>
       </li>
-    {% endfor %}
+      {% endfor %}
     </ul>
-  </li>
-  {% endfor %}
-</ul>
+  </body>
+</html>

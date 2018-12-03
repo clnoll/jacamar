@@ -64,7 +64,8 @@ class Recording(BaseResource):
     def _group_recording_by_species(self, query_results):
         grouped_results = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
         for el in query_results:
-            species = grouped_results[el['family']][el['genus']][el['species']]
+            family_key = '{family_english_name} ({family}) {weight}g'.format(**el)
+            species = grouped_results[family_key][el['genus']][el['species']]
             recording = (el['type'], el['id'])
             if 'recordings' in species:
                 species['recordings'] += [recording]
@@ -80,13 +81,13 @@ class Recording(BaseResource):
 
         if recording_id is None:
             query = f"""
-            select family.name as family, genus.name as genus, species.name as species, species.english_name as english_name, recording.id, recording.type, image.url
+            select family.name as family, family.english_name as family_english_name, family.weight, genus.name as genus, species.name as species, species.english_name as english_name, recording.id, recording.type, image.url
             from species
             inner join image on species.id = image.species_id
             inner join recording on recording.species_id = species.id
             inner join genus on species.genus_id = genus.id
             inner join family on genus.family_id = family.id
-            order by family.name, genus.name, species.name
+            order by family.weight, genus.name, species.name
             """
             query_results = self.db.connection.cursor().execute(query).fetchall()
             template_path = os.path.join(settings.template_dir, 'recordings.html')
