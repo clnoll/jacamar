@@ -247,6 +247,100 @@ class RecordingQuiz(BaseResource):
             self._on_get_recording_quiz(recording, response)
 
 
+class ImageQuiz(BaseResource):
+
+    def _group_recording_by_species(self, query_results):
+        grouped_results = defaultdict(dict)
+        for el in query_results:
+            key = '{english_name} ({genus_name} {species_name}) {weight}g'.format(**el)
+            if 'recording_ids' in grouped_results[key]:
+                grouped_results[key]['recording_ids'].append(el['recording_id'])
+            else:
+                grouped_results[key]['recording_ids'] = [el['recording_id']]
+            grouped_results[key]['species_id'] = el['species_id']
+        return grouped_results
+
+    def get_species_with_songs(self, family_id):
+        species_query = f"""
+        select distinct species.id as species_id, genus.name as genus_name, species.name as species_name, species.english_name, family.weight, recording.id as recording_id
+        from recording join species on species.id = recording.species_id
+        join genus on genus.id = species.genus_id
+        join family on family.id = genus.family_id
+        where recording.type like '%song%'
+        and family.id = {family_id}
+        and not family.name in ('Hirundinidae')
+        order by family.weight
+        """
+        results = self.db.connection.cursor().execute(species_query).fetchall()
+        return self._group_recording_by_species(results)
+
+    def _on_get_image_quiz(self, image, response):
+        template_path = os.path.join(settings.template_dir, 'image_quiz.html')
+        species = self.get_species_with_songs(image['family_id'])
+        response.body = (load_template(template_path)
+                         .render(image=image,
+                                 species=species))
+        response.status = falcon.HTTP_200
+        response.content_type = falcon.MEDIA_HTML
+
+    def on_get(self, request, response):
+        image_query = """
+        select image.id, image.url, species.english_name, family.id as family_id, species.id as species_id from image
+        join species on image.species_id = species.id
+        inner join genus on genus.id = species.genus_id
+        inner join family on family.id = genus.family_id
+        where image.id in (
+          select image.id from image
+          join recording on recording.species_id = image.species_id
+          where type like '%song%'
+          order by random()
+          limit 1
+        )
+        and not family.name in ('Hirundinidae')
+        """
+        image = self.db.connection.cursor().execute(image_query).fetchone()
+        self._on_get_image_quiz(image, response)
+
+        from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
+        print(red(f"Truth: {dict(image)}"))
+
+    def on_post(self, request, response):
+        form_data = parse_form_data(request)
+
+        from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
+        print(red(f'form data: {form_data}'))
+        image_id = form_data['image_id']
+        guessed_species_id = form_data['species_id']
+
+        query = f"""
+        select species.id from image
+        inner join species on species.id = image.species_id
+        inner join genus on genus.id = species.genus_id
+        inner join family on family.id = genus.family_id
+        where image.id = {image_id}
+        """
+        [actual_species_id] = self.db.execute(query).fetchone()
+        actual_species_id = int(actual_species_id)
+
+        from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
+        print(red('image %s is species %s' % (form_data['species_id'], actual_species_id)))
+
+        if guessed_species_id == actual_species_id:
+            response.body = 'Success!'
+            response.status = falcon.HTTP_200
+            response.content_type = falcon.MEDIA_HTML
+        else:
+            image_query = f"""
+                select image.id, image.url, species.english_name, family.id as family_id, species.id as species_id from image
+                join species on image.species_id = species.id
+                inner join genus on genus.id = species.genus_id
+                inner join family on family.id = genus.family_id
+                where image.id = {image_id}
+            """
+            image = self.db.connection.cursor().execute(image_query).fetchone()
+            self._on_get_image_quiz(image, response)
+
+
 def parse_form_data(request):
     SEP = '--'
     raw_data = request.stream.read().decode('utf-8')
