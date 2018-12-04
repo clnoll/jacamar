@@ -81,7 +81,11 @@ class Recording(BaseResource):
 
         if recording_id is None:
             query = f"""
-            select family.name as family, family.english_name as family_english_name, family.weight, genus.name as genus, species.name as species, species.english_name as english_name, recording.id, recording.type, image.url
+            select family.name as family, family.english_name as family_english_name, family.weight,
+                   genus.name as genus,
+                   species.name as species, species.english_name as english_name,
+                   recording.id, recording.type,
+                   image.url
             from species
             inner join image on species.id = image.species_id
             inner join recording on recording.species_id = species.id
