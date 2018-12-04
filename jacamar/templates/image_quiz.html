@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Bird Image Quiz</title>
+    <style>
+      audio {
+          display: table;
+          margin: 0 auto;
+      }
+      img.bird {
+          width: 150px;
+      }
+      .hidden {
+          display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <img src={{ image['url'] }}>
+    {{ image['family_name'] }} ({{ image['family_english_name'] }}) {{ image['weight'] }}g
+    <table>
+      <tbody>
+        {% for k, s in species.items() %}
+        <form action="/image-quiz/" method="post">
+          <tr>
+            <td>
+              <input class="hidden" type="radio" name="data" value="species_id--{{ s['species_id'] }}--image_id--{{ image['id'] }}" checked>
+              <input type="submit" value="{{ k }}">
+            </td>
+            {% for r in s['recording_ids'] %}
+              <td>
+                <audio controls>
+                  <source src="/recordings/{{ r }}/" type="audio/mpeg">
+                </audio>
+              </td>
+            {% endfor %}
+          </tr>
+        </form>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

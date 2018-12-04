@@ -252,17 +252,18 @@ class ImageQuiz(BaseResource):
     def _group_recording_by_species(self, query_results):
         grouped_results = defaultdict(dict)
         for el in query_results:
-            key = '{english_name} ({genus_name} {species_name}) {weight}g'.format(**el)
+            key = '{english_name} ({genus_name} {species_name})'.format(**el)
+            species = grouped_results[key]
             if 'recording_ids' in grouped_results[key]:
-                grouped_results[key]['recording_ids'].append(el['recording_id'])
+                species['recording_ids'].append(el['recording_id'])
             else:
-                grouped_results[key]['recording_ids'] = [el['recording_id']]
-            grouped_results[key]['species_id'] = el['species_id']
+                species['recording_ids'] = [el['recording_id']]
+            species['species_id'] = el['species_id']
         return grouped_results
 
     def get_species_with_songs(self, family_id):
         species_query = f"""
-        select distinct species.id as species_id, genus.name as genus_name, species.name as species_name, species.english_name, family.weight, recording.id as recording_id
+        select distinct species.id as species_id, genus.name as genus_name, species.name as species_name, species.english_name, recording.id as recording_id
         from recording join species on species.id = recording.species_id
         join genus on genus.id = species.genus_id
         join family on family.id = genus.family_id
@@ -285,7 +286,7 @@ class ImageQuiz(BaseResource):
 
     def on_get(self, request, response):
         image_query = """
-        select image.id, image.url, species.english_name, family.id as family_id, species.id as species_id from image
+        select image.id, image.url, family.id as family_id, family.name as family_name, family.english_name as family_english_name, family.weight as weight, species.id as species_id from image
         join species on image.species_id = species.id
         inner join genus on genus.id = species.genus_id
         inner join family on family.id = genus.family_id
@@ -331,7 +332,7 @@ class ImageQuiz(BaseResource):
             response.content_type = falcon.MEDIA_HTML
         else:
             image_query = f"""
-                select image.id, image.url, species.english_name, family.id as family_id, species.id as species_id from image
+        select image.id, image.url, family.id as family_id, family.name as family_name, family.english_name as family_english_name, family.weight as weight, species.id as species_id from image
                 join species on image.species_id = species.id
                 inner join genus on genus.id = species.genus_id
                 inner join family on family.id = genus.family_id
