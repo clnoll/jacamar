@@ -6,6 +6,11 @@
     </style>
   </head>
   <body>
+    {% if recording %}
+    <audio autoplay controls>
+      <source src="/recordings/{{ recording['id'] }}/" type="audio/mpeg">
+    </audio>
+    {% endif %}
     <ul>
       {% for f, genus2species in results.items() %}
       <li>
@@ -17,7 +22,14 @@
             <ul>
               {% for _, s in species.items() %}
               <li>
+                {% if recording %}
+                <form action="/recordings/" method="post">
+                  <input class="hidden" type="radio" name="data" value="species_id--{{ s['id'] }}--recording_id--{{ recording['id'] }}" checked>
+                  <input type="submit" value="{{ s['english_name'] }} ({{ s['name'] }})">
+                </form>
+                {% else %}
                 {{ s['english_name'] }} ({{ s['name'] }})
+                {% endif %}
                 <table>
                   <tbody>
                     {% for type, id in s['recordings'] %}

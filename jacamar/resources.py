@@ -74,16 +74,25 @@ class Recording(BaseResource):
             species['image_url'] = el['url']
             species['english_name'] = el['english_name']
             species['name'] = '%s %s' % (el['genus'], el['species'])
+            species['id'] = el['species_id']
         return grouped_results
 
-    def on_get(self, request, response, recording_id=None):
-        error = None
-
-        if recording_id is None:
+    def on_get(self, request, response, family_id=None, recording_id=None, **_):
+        if family_id is None and recording_id is not None:
+            # REST-style request for a recording file
+            query = f"""
+            select path from recording where id = {recording_id}
+            """
+            [recording_path] = self.db.connection.cursor().execute(query).fetchone()
+            with open(recording_path, 'rb') as fp:
+                response.body = fp.read()
+        else:
+            # Species recordings list view
+            where_clause = f'where family.id = {family_id}' if family_id is not None else ''
             query = f"""
             select family.name as family, family.english_name as family_english_name, family.weight,
                    genus.name as genus,
-                   species.name as species, species.english_name as english_name,
+                   species.name as species, species.english_name as english_name, species.id as species_id,
                    recording.id, recording.type,
                    image.url
             from species
@@ -91,23 +100,41 @@ class Recording(BaseResource):
             inner join recording on recording.species_id = species.id
             inner join genus on species.genus_id = genus.id
             inner join family on genus.family_id = family.id
+            {where_clause}
             order by family.weight, genus.name, species.name
             """
             query_results = self.db.connection.cursor().execute(query).fetchall()
             template_path = os.path.join(settings.template_dir, 'recordings.html')
-            response.content_type = falcon.MEDIA_HTML
-            response.body = load_template(template_path).render(
-                results=self._group_recording_by_species(query_results))
-        else:
-            query = f"""
-            select path from recording where id = {recording_id}
-            """
-            [recording_path] = self.db.connection.cursor().execute(query).fetchone()
-            with open(recording_path, 'rb') as fp:
-                response.body = fp.read()
-            response.content_type = "audio/mpeg"
+            response.body = (load_template(template_path)
+                             .render(results=self._group_recording_by_species(query_results),
+                                     recording={'id': recording_id} if recording_id else None))
 
+        response.content_type = falcon.MEDIA_HTML
         response.status = falcon.HTTP_200
+
+    def on_post(self, request, response):
+        form_data = parse_form_data(request)
+
+        query = f"""
+        select recording.id, recording.species_id, family.id as family_id
+        from recording
+        inner join species on species.id = recording.species_id
+        inner join genus on genus.id = species.genus_id
+        inner join family on family.id = genus.family_id
+        where recording.id = {form_data['recording_id']}
+        """
+        recording = dict(self.db.execute(query).fetchone())
+        recording['species_id'] = int(recording['species_id'])
+        recording['family_id'] = int(recording['family_id'])
+
+        if form_data['species_id'] == recording['species_id']:
+            response.body = "🐦 Success! 🐦"
+            response.content_type = falcon.MEDIA_HTML
+            response.status = falcon.HTTP_200
+        else:
+            self._on_get(request, response,
+                         recording_id=recording['id'],
+                         family_id=recording['family_id'])
 
 
 class Classification(BaseResource):
@@ -218,7 +245,6 @@ class RecordingQuiz(BaseResource):
         from clint.textui import colored; red = lambda s: colored.red(s, bold=True)
         print(red(f"Truth: {dict(recording)}"))
 
-
     def on_post(self, request, response):
         form_data = parse_form_data(request)
 
@@ -239,9 +265,9 @@ class RecordingQuiz(BaseResource):
         print(red('recording %s is family %s' % (form_data['recording_id'], species_family_id)))
 
         if form_data['family_id'] == species_family_id:
-            response.body = 'Success! On to genus and species...'
-            response.status = falcon.HTTP_200
-            response.content_type = falcon.MEDIA_HTML
+            # TODO: sharing Recording() view for second stage of quiz; this is starting to get
+            # confusing.
+            Recording().on_get(request, response, **form_data)
         else:
             recording = {'id': form_data['recording_id']}
             self._on_get_recording_quiz(recording, response)
