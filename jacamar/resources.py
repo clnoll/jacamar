@@ -140,9 +140,9 @@ class Recording(BaseResource):
             response.content_type = falcon.MEDIA_HTML
             response.status = falcon.HTTP_200
         else:
-            self._on_get(request, response,
-                         recording_id=recording['id'],
-                         family_id=recording['family_id'])
+            self.on_get(request, response,
+                        recording_id=recording['id'],
+                        family_id=recording['family_id'])
 
 
 class Classification(BaseResource):
