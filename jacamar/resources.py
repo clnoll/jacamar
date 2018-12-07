@@ -235,17 +235,19 @@ class RecordingQuiz(BaseResource):
     def on_get(self, request, response):
         # TODO: species.id is not used
         recording_query = """
-        select recording.id, species.id as species_id, species.english_name, family.id as family_id from recording
-        join species on recording.species_id = species.id
+        select recording.id,
+               species.id as species_id, species.name as species_name, species.english_name,
+               genus.name as genus_name,
+               family.id as family_id
+        from recording
+        inner join species on recording.species_id = species.id
+        inner join image on image.species_id = species.id
         inner join genus on genus.id = species.genus_id
         inner join family on family.id = genus.family_id
-        where recording.id in (
-          select recording.id from recording
-          where type like '%song%'
-          order by random()
-          limit 1
-        )
-        and not family.name in ('Hirundinidae')
+        where (recording.type like '%song%'
+               and not family.name in ('Hirundinidae'))
+        order by random()
+        limit 1
         """
         recording = self.db.connection.cursor().execute(recording_query).fetchone()
         self._on_get_recording_quiz(recording, response)
