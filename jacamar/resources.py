@@ -88,7 +88,15 @@ class Recording(BaseResource):
                 response.body = fp.read()
         else:
             # Species recordings list view
-            where_clause = f'where family.id = {family_id}' if family_id is not None else ''
+            where = []
+            if family_id is not None:
+                where.append(f'family.id = {family_id}')
+            if recording_id is not None:
+                where.append(f'not recording.id = {recording_id}')
+            if where:
+                where_clause = 'where ' + ' and '.join(where)
+            else:
+                where_clause = ''
             query = f"""
             select family.name as family, family.english_name as family_english_name, family.weight,
                    genus.name as genus,
