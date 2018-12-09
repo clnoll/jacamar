@@ -44,7 +44,9 @@
                       </td>
                       {% if loop.first %}
                       <td rowspan="0">
-                        <img src="{{ s['image_url'] }}" class="bird">
+                        <a href="https://en.wikipedia.org/wiki/{{ s['name'] }}">
+                          <img src="{{ s['image_url'] }}" class="bird">
+                        </a>
                       </td>
                       {% endif %}
                     </tr>
